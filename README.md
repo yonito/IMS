@@ -4,7 +4,7 @@ Erez Bendavid    (Responsible for the database)
 Koren Tavoh      (Responsible for log in interface)
 Yoni Touitou     (Responsible for graphic interface)
 
-# **IMS Vision :**
+IMS Vision :
 Today, small/medium businesses don't have many software option to manage their inventory.
 They must work with general software that doesn't fit to their needs.
 The business manager don't have to deal with advanced functionality that doesn't relate to him.
