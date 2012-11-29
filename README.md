@@ -13,4 +13,4 @@ So that the reason we chose to develop a easy specific management software for t
 
 For more details about IMS :
 - [User guide] (https://github.com/downloads/jce-il/se-class/IMS%20-%20User%20documentation.pdf) 
-- [Developer guide] (https://github.com/downloads/jce-il/se-class/%D7%AA%D7%99%D7%A2%D7%95%D7%93%20%D7%94%D7%9E%D7%95%D7%A6%D7%A8%20%D7%9C%D7%9E%D7%A4%D7%AA%D7%97%D7%99%D7%9D.pdf)
+- [Developer guide] (https://github.com/downloads/yonito/IMS/%D7%AA%D7%99%D7%A2%D7%95%D7%93%20%D7%94%D7%9E%D7%95%D7%A6%D7%A8%20%D7%9C%D7%9E%D7%A4%D7%AA%D7%97%D7%99%D7%9D.pdf)
