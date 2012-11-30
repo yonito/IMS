@@ -52,6 +52,18 @@ public class mainWindows extends JFrame
 			btnReservation.setFont(new Font("Data", Font.PLAIN, 18));
 			btnReservation.setBounds(330, 226, 215, 103);
 			contentPane.add(btnReservation);
+			btnReservation.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e)
+				{
+					new Thread(new Runnable() {
+						public void run() {
+							reservationGUI reservationWin = new reservationGUI();
+							reservationWin.setVisible(true);
+							reservationWin.setAlwaysOnTop(true); // tjrs au dessus des autres fenetres
+						} // end of run()	 
+					  }).start();
+				}
+			});
 			
 			/*Button Inventory*/
 			JButton btnInventory = new JButton("INVENTORY");

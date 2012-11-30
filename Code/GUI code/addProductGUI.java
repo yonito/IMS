@@ -5,8 +5,12 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JComboBox;
@@ -15,10 +19,10 @@ import javax.swing.JComboBox;
 public class addProductGUI extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField txtIDprod;
+	private JTextField txtNameProd;
+	private JTextField txtPrice;
+	private JTextField txtQuantity;
 	/**
 	 * Create the dialog.
 	 */
@@ -36,35 +40,35 @@ public class addProductGUI extends JDialog {
 		lblNewLabel.setBounds(10, 21, 350, 25);
 		contentPanel.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Product identity number :");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblNewLabel_1.setBounds(10, 66, 179, 14);
-		contentPanel.add(lblNewLabel_1);
+		JLabel lblIDproduct = new JLabel("Product identity number :");
+		lblIDproduct.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblIDproduct.setBounds(10, 66, 179, 14);
+		contentPanel.add(lblIDproduct);
 		
-		textField = new JTextField();
-		textField.setBounds(10, 85, 179, 20);
-		contentPanel.add(textField);
-		textField.setColumns(10);
+		txtIDprod = new JTextField();
+		txtIDprod.setBounds(10, 85, 179, 20);
+		contentPanel.add(txtIDprod);
+		txtIDprod.setColumns(10);
 		
 		JLabel lblNamesProduct = new JLabel("Name's product :");
 		lblNamesProduct.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNamesProduct.setBounds(10, 116, 179, 14);
 		contentPanel.add(lblNamesProduct);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(10, 135, 179, 20);
-		contentPanel.add(textField_1);
+		txtIDprod = new JTextField();
+		txtIDprod.setColumns(10);
+		txtIDprod.setBounds(10, 135, 179, 20);
+		contentPanel.add(txtIDprod);
 		
 		JLabel lblPricesProduct = new JLabel("Price's product :");
 		lblPricesProduct.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblPricesProduct.setBounds(10, 166, 179, 14);
 		contentPanel.add(lblPricesProduct);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(10, 187, 179, 20);
-		contentPanel.add(textField_2);
+		txtPrice = new JTextField();
+		txtPrice.setColumns(10);
+		txtPrice.setBounds(10, 187, 179, 20);
+		contentPanel.add(txtPrice);
 		
 		JLabel lblNamesSupplier = new JLabel("Name's supplier :");
 		lblNamesSupplier.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -80,10 +84,10 @@ public class addProductGUI extends JDialog {
 		lblQuantityBefore.setBounds(10, 274, 243, 14);
 		contentPanel.add(lblQuantityBefore);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(251, 272, 58, 20);
-		contentPanel.add(textField_3);
+		txtQuantity = new JTextField();
+		txtQuantity.setColumns(10);
+		txtQuantity.setBounds(251, 272, 58, 20);
+		contentPanel.add(txtQuantity);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBounds(0, 331, 433, 33);
@@ -94,11 +98,28 @@ public class addProductGUI extends JDialog {
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0)
+					{
+						int idProduct = Integer.parseInt(txtIDprod.getText());
+						String nameProd = txtNameProd.getText();
+						int priceProd = Integer.parseInt(txtPrice.getText());
+						int alertQuantity = Integer.parseInt(txtQuantity.getText());
+						//product p = new product(idProduct, nameProd, priceProd, alertQuantity);
+						//addProduct(p);
+					}
+				});
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0)
+					{
+						dispose();
+					}
+				});
 			}
 		}
 	}

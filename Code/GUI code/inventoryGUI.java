@@ -1,5 +1,7 @@
-	import javax.swing.JFrame;
+	import javax.swing.JDialog;
+import javax.swing.JFrame;
 	import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 	import javax.swing.border.EmptyBorder;
 	import javax.swing.JLabel;
 	import javax.swing.JTextField;
@@ -8,12 +10,13 @@
 	import java.awt.Color;
 	import javax.swing.JTable;
 	import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 	import javax.swing.border.TitledBorder;
 	import javax.swing.ListSelectionModel;
 	import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class inventoryGUI extends JFrame
+public class inventoryGUI extends JDialog
 {
 	private JPanel contentPane;
 	private JTextField txtSearchAProduct;
@@ -53,41 +56,6 @@ public class inventoryGUI extends JFrame
 		btnNewButton_1.setBounds(284, 39, 89, 23);
 		contentPane.add(btnNewButton_1);
 			
-		table = new JTable();
-		table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		table.setCellSelectionEnabled(true);
-		table.setColumnSelectionAllowed(true);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null},
-					{null, null, null, null, null, null},
-					{null, null, null, null, null, null},
-					{null, null, null, null, null, null},
-					{null, null, null, null, null, null},
-					{null, null, null, null, null, null},
-					{null, null, null, null, null, null},
-					{null, null, null, null, null, null},
-					{null, null, null, null, null, null},
-					{null, null, null, null, null, null},
-					{null, null, null, null, null, null},
-					{null, null, null, null, null, null},
-					{null, null, null, null, null, null},
-					{null, null, null, null, null, null},
-					{null, null, null, null, null, null},
-				},
-				new String[] {
-					"ID Product", "Name's product", "Price (ILS)", "Supplier", "Current Quantity", "Quantity alert"
-				}
-			));
-		table.getColumnModel().getColumn(0).setPreferredWidth(89);
-		table.getColumnModel().getColumn(1).setPreferredWidth(93);
-		table.getColumnModel().getColumn(2).setPreferredWidth(89);
-		table.getColumnModel().getColumn(4).setPreferredWidth(94);
-		table.getColumnModel().getColumn(5).setPreferredWidth(84);
-		table.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		table.setBounds(28, 80, 344, 239);
-		contentPane.add(table);
-			
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.setBounds(227, 374, 101, 23);
 		contentPane.add(btnDelete);
@@ -100,7 +68,19 @@ public class inventoryGUI extends JFrame
 		lblNewLabel.setFont(new Font("Segoe UI", Font.ITALIC, 12));
 		lblNewLabel.setBounds(12, 410, 196, 14);
 		contentPane.add(lblNewLabel);
+		
+		
+		String[] columnNames = {"ID", "Product name", "Product price", "Quantity", "Supplier"};
+		Object[][] data = {
+			    {new Integer(01), "Malboro Light", new Integer(7), new Integer(200), new String("USSup")},
+			    {new Integer(02), "Coca Cola", new Integer(2), new Integer(70), new String("Coca Compagny")}};
+
+		table = new JTable(data, columnNames);
+		JScrollPane scroll = new JScrollPane(table);
+		scroll.setLocation(10, 71);
+        scroll.setSize(390,250);
+		table.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		table.setBounds(12, 71, 388, 251);
+		contentPane.add(scroll);
 	}
-
-
 }
