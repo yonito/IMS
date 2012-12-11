@@ -1,0 +1,79 @@
+import java.awt.BorderLayout;
+
+
+public class login extends JDialog {
+
+  private final JPanel contentPanel = new JPanel();
+	private JTextField textField;
+	private JPasswordField passwordField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		try {
+			login dialog = new login();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public login() {
+		setBounds(100, 100, 290, 300);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
+		
+		textField = new JTextField();
+		textField.setBounds(10, 91, 86, 20);
+		contentPanel.add(textField);
+		textField.setColumns(10);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(10, 140, 86, 20);
+		contentPanel.add(passwordField);
+		
+		JLabel lblUsername = new JLabel("Username:");
+		lblUsername.setBounds(10, 66, 86, 14);
+		contentPanel.add(lblUsername);
+		
+		JLabel lblPassword = new JLabel("Password:");
+		lblPassword.setBounds(10, 122, 86, 14);
+		contentPanel.add(lblPassword);
+		
+		JLabel lblLogIn = new JLabel("Log In");
+		lblLogIn.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblLogIn.setBounds(10, 11, 69, 39);
+		contentPanel.add(lblLogIn);
+		
+		JButton btnAddNewUser = new JButton("Add New User");
+		btnAddNewUser.setBounds(10, 195, 101, 23);
+		contentPanel.add(btnAddNewUser);
+		
+		JButton btnAddNewManager = new JButton("Add New Manager");
+		btnAddNewManager.setBounds(121, 195, 121, 23);
+		contentPanel.add(btnAddNewManager);
+		{
+			JPanel buttonPane = new JPanel();
+			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			{
+				JButton okButton = new JButton("OK");
+				okButton.setActionCommand("OK");
+				buttonPane.add(okButton);
+				getRootPane().setDefaultButton(okButton);
+			}
+			{
+				JButton cancelButton = new JButton("Cancel");
+				cancelButton.setActionCommand("Cancel");
+				buttonPane.add(cancelButton);
+			}
+		}
+	}
+}
