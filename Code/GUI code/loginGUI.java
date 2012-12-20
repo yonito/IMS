@@ -4,30 +4,29 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JSeparator;
-import javax.swing.JInternalFrame;
 
 
 public class loginGUI extends JDialog
 {
 
-  private final JPanel contentPanel= new JPanel();
+  private final JPanel contentPanel = new JPanel();
   private JPasswordField passwordField;
   private JTextField textFieldUsername;
-  
+  boolean endThread = false;
 
-	public loginGUI(mainWindows m)
-	{
-		super(m, true);
+
+	/**
+	 * Create the dialog.
+	 */
+	public loginGUI() {
 		setTitle("Identification");
 		setBounds(100, 100, 464, 430);
 		getContentPane().setLayout(new BorderLayout());
@@ -89,10 +88,9 @@ public class loginGUI extends JDialog
 					{
 						String getUsername = textFieldUsername.getText();
 						String getPassword = passwordField.getSelectedText();
-						dispose(); // close the jdialog
 						//if(isUserExist(getUsername, getPassword) == true)
 						//{
-							 // close the login window
+							endThread = true; // close the login window
 						//}
 					 // end of run()	 
 					}
@@ -104,7 +102,6 @@ public class loginGUI extends JDialog
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
-			setVisible(true);
 		}
 	}
 }

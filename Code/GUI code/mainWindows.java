@@ -6,6 +6,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.border.EmptyBorder;
+import javax.xml.ws.soap.AddressingFeature;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -14,31 +16,11 @@ import java.awt.event.ActionListener;
 public class mainWindows extends JFrame
 {
 		private JPanel contentPane;
-		
-		public static void main(String[] args)
-		{
-			loginThread login_thread;
-			
-			//
-			//mainWin.setVisible(false);
-			
-			mainWindows mainWin = new mainWindows();
-			login_thread = new loginThread(mainWin);
-			
-			login_thread.run();
-			mainWin.setVisible(true);
-
-						
-			
-			
-		}
 		public mainWindows()
 		{
-			setVisible(false);
-			this.setLocationRelativeTo(null);
 			setForeground(Color.WHITE);
 			setTitle("IMS : Inventory Manager Software");
-			setAlwaysOnTop(false);
+			setAlwaysOnTop(true);
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setBounds(100, 100, 604, 581);
 			contentPane = new JPanel();
@@ -116,6 +98,6 @@ public class mainWindows extends JFrame
 			separator.setBounds(0, 184, 588, 12);
 			contentPane.add(separator);
 			
-			//setVisible(true);
+			setVisible(true);
 		}
 }
