@@ -90,8 +90,16 @@ public class loginGUI extends JDialog
 					{
 						String getUsername = textFieldUsername.getText();
 						char[] getPassword = passwordField.getPassword();
-						if(isValidInputUsername(getUsername, getPassword) == true)
+						if(isValidInput(getUsername, getPassword) == true)
+						{
+							database db = new database();
+							if(db.isManagerExist(getUsername) == true)
+							{
+								JOptionPane.showMessageDialog(null, "Bad password !", "Error Input", JOptionPane.WARNING_MESSAGE);
+							}
+								
 							dispose(); // close the jdialog	 
+						}
 					}
 				});
 			}
@@ -100,12 +108,18 @@ public class loginGUI extends JDialog
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
+				cancelButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e)
+				{
+					System.exit(0); // close the application when click on cancel button
+				}
+				});
 			}
 			setVisible(true);
 		}
 	}
 	/*Check the validity of the username and password input - valid = numbers or letters*/
-	private boolean isValidInputUsername(String username, char[] password)
+	private boolean isValidInput(String username, char[] password)
 	{
 		boolean input_username = true;
 		boolean input_password = true;
