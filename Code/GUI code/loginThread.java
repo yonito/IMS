@@ -1,22 +1,14 @@
 
-public class loginThread implements Runnable
+public class loginThread extends Thread
 {
-
-	loginGUI loginWindow;
-	@Override
+	mainWindows mainWin;
+	public loginThread(mainWindows w)
+	{
+		mainWin = w;
+	}
 	public void run()
 	{
-		loginWindow = new loginGUI();
-		loginWindow.setVisible(true);
-		loginWindow.setAlwaysOnTop(true);
-		cancelThread();		
+		loginGUI loginWin = new loginGUI(mainWin);
 	}
-	
-	
-	private void cancelThread()
-	{
-		while(loginWindow.endThread == false){}
-		Thread.interrupted();
-	}
-
 }
+	
