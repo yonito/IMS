@@ -4,29 +4,31 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JSeparator;
+import javax.swing.JInternalFrame;
 
 
 public class loginGUI extends JDialog
 {
 
-  private final JPanel contentPanel = new JPanel();
+  private final JPanel contentPanel= new JPanel();
   private JPasswordField passwordField;
   private JTextField textFieldUsername;
-  boolean endThread = false;
+  
 
-
-	/**
-	 * Create the dialog.
-	 */
-	public loginGUI() {
+	public loginGUI(mainWindows m)
+	{
+		super(m, true);
 		setTitle("Identification");
 		setBounds(100, 100, 464, 430);
 		getContentPane().setLayout(new BorderLayout());
@@ -87,12 +89,9 @@ public class loginGUI extends JDialog
 					public void actionPerformed(ActionEvent e)
 					{
 						String getUsername = textFieldUsername.getText();
-						String getPassword = passwordField.getSelectedText();
-						//if(isUserExist(getUsername, getPassword) == true)
-						//{
-							endThread = true; // close the login window
-						//}
-					 // end of run()	 
+						char[] getPassword = passwordField.getPassword();
+						if(isValidInputUsername(getUsername, getPassword) == true)
+							dispose(); // close the jdialog	 
 					}
 				});
 			}
@@ -102,6 +101,55 @@ public class loginGUI extends JDialog
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
+			setVisible(true);
 		}
+	}
+	/*Check the validity of the username and password input - valid = numbers or letters*/
+	private boolean isValidInputUsername(String username, char[] password)
+	{
+		boolean input_username = true;
+		boolean input_password = true;
+		for(int i = 0; i < username.length(); i++)
+		{
+			if((username.charAt(i) >= 48 && username.charAt(i) <= 57) ||
+					(username.charAt(i) >= 65 && username.charAt(i) <= 90) ||
+						(username.charAt(i) >= 97 && username.charAt(i) <= 122))
+			{
+				continue;
+			}
+			input_username = false;
+			break;
+		}
+		for(int i = 0; i < password.length; i++)
+		{
+			if((password[i] >= 48 && password[i] <= 57) ||
+					(password[i] >= 65 && password[i] <= 90) ||
+						(password[i] >= 97 && password[i] <= 122))
+			{
+				continue;
+			}
+			input_password = false;
+			break;
+		}
+		
+		if(input_username == false && input_password == false)
+		{
+			System.out.println("bad username and password !");
+			JOptionPane.showMessageDialog(this, "Bad input username and password !", "Error Input", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		else if(input_username == true && input_password == false)
+		{
+			System.out.println("bad password !");
+			JOptionPane.showMessageDialog(this, "Bad password !", "Error Input", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		else if(input_username == false && input_password == true)
+		{
+			System.out.println("bad username !");
+			JOptionPane.showMessageDialog(this, "Bad Username !", "Error Input", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		return true;
 	}
 }
