@@ -14,8 +14,8 @@ public class database
 	{
 		connect();
 	}
-	
-	
+
+
 	public void connect()
 	{
 		try
@@ -30,7 +30,7 @@ public class database
 		}
 		catch(Exception ex){}
 	}
-	
+
 	public boolean isManagerExist(String user)
 	{
 		String sql = "select Username,Password from Login where Username='"+user;
@@ -40,13 +40,13 @@ public class database
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		try
 		{
 			int count = 0 ;
 			while(rs.next())
 				count++;
-			
+
 			if(count > 0)
 			{
 				return true;

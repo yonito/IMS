@@ -1,5 +1,3 @@
-
-public class worker extends user
-{
+public class worker extends user {
 
 }
