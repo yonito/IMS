@@ -1,4 +1,3 @@
-
 public class loginThread extends Thread
 {
 	mainWindows mainWin;
@@ -11,4 +10,3 @@ public class loginThread extends Thread
 		loginGUI loginWin = new loginGUI(mainWin);
 	}
 }
-	

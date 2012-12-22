@@ -1,5 +1,3 @@
-
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,23 +12,23 @@ import java.awt.event.ActionListener;
 public class mainWindows extends JFrame
 {
 		private JPanel contentPane;
-		
+
 		public static void main(String[] args)
 		{
 			loginThread login_thread;
-			
+
 			//
 			//mainWin.setVisible(false);
-			presentationWindows open = new presentationWindows();
+
 			mainWindows mainWin = new mainWindows();
 			login_thread = new loginThread(mainWin);
-			
+
 			login_thread.run();
 			mainWin.setVisible(true);
 
-						
-			
-			
+
+
+
 		}
 		public mainWindows()
 		{
@@ -46,7 +44,7 @@ public class mainWindows extends JFrame
 			contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 			setContentPane(contentPane);
 			contentPane.setLayout(null);
-			
+
 			/*Button add product*/
 			JButton btnAddProduct = new JButton("ADD PRODUCT");
 			btnAddProduct.setFont(new Font("Data", Font.PLAIN, 18));
@@ -64,7 +62,7 @@ public class mainWindows extends JFrame
 					  }).start();
 				}
 			});
-			
+
 			/*Button Reservation*/
 			JButton btnReservation = new JButton("RESERVATION");
 			btnReservation.setFont(new Font("Data", Font.PLAIN, 18));
@@ -82,7 +80,7 @@ public class mainWindows extends JFrame
 					  }).start();
 				}
 			});
-			
+
 			/*Button Inventory*/
 			JButton btnInventory = new JButton("INVENTORY");
 			btnInventory.setFont(new Font("Data", Font.PLAIN, 18));
@@ -100,22 +98,22 @@ public class mainWindows extends JFrame
 					  }).start();
 				}
 			});
-			
+
 			JLabel lblNewLabel = new JLabel("Welcome to IMS");
 			lblNewLabel.setForeground(Color.WHITE);
 			lblNewLabel.setFont(new Font("Data", Font.PLAIN, 46));
 			lblNewLabel.setBounds(108, 28, 374, 78);
 			contentPane.add(lblNewLabel);
-			
+
 			JLabel lblYourInventor = new JLabel("Your inventory is in good situation !");
 			lblYourInventor.setFont(new Font("Data", Font.PLAIN, 20));
 			lblYourInventor.setBounds(118, 105, 342, 56);
 			contentPane.add(lblYourInventor);
-			
+
 			JSeparator separator = new JSeparator();
 			separator.setBounds(0, 184, 588, 12);
 			contentPane.add(separator);
-			
+
 			//setVisible(true);
 		}
 }
