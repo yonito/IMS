@@ -1,7 +1,7 @@
 ![Bilby Stampede](http://img15.hostingpics.net/pics/673348IMS.jpg)
 
 This Project IMS is develop by the team :
-- Sharon Yarmovsky (Responsible for the database)
+- Sharon Yarmovskן (Responsible for the database)
 - Erez Bendavid    (Responsible for the database)
 - Koren Tavoh      (Responsible for log in interface)
 - Yoni Touitou     (Responsible for graphic interface)
