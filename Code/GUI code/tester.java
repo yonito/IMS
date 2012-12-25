@@ -72,7 +72,7 @@ public class Tester
 		//		}
 
 
-		new manager();
+	//	new manager();
 
 		login_thread = new loginThread(null);//мод рам????
 		login_thread.run();

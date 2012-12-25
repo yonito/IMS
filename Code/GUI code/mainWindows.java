@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 public class mainWindows extends JFrame
 {
 		private JPanel contentPane;
+		//public static database db = new database();
 
 		public static void main(String[] args)
 		{

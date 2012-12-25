@@ -1,7 +1,7 @@
 public abstract class user
 {
-	private String username;
-	private String code;
-	private String role; // worker or manager
+	public String username;
+	public String code;
+	public String role; // worker or manager
 	
 }

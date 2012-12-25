@@ -8,5 +8,6 @@ public class loginThread extends Thread
 	public void run()
 	{
 		loginGUI loginWin = new loginGUI(mainWin);
+		//System.out.println("exit");
 	}
 }

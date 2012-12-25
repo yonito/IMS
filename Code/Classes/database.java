@@ -33,7 +33,47 @@ public class database
 
 	public boolean isManagerExist(String user)
 	{
-		String sql = "select Username,Password from Login where Username='"+user;
+		String sql = "select Username,Password from Login where Username='"+user+"'";
+		try {
+			rs = st.executeQuery(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try
+		{
+			int count = 0 ;
+			while(rs.next())
+				count++;
+
+			if(count > 0)
+			{
+				return true;
+			}
+			else
+				return false;
+		}
+		catch(Exception ex){}
+		return false;
+	}
+	
+	public int addManager(manager m)
+	{
+		String insert = "INSERT INTO LOGIN(Username,Password) VALUES ('" + m.username + "','" + m.code +"')";
+		try {
+			st.executeUpdate(insert);
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			return -1;
+		}
+		return 0;
+	}
+	
+	public boolean isUserInSystem(String username,String pass)
+	{
+		String sql = "select Username,Password from Login where Username='"+username+"'and Password='"+pass+"'";
 		try {
 			rs = st.executeQuery(sql);
 		} catch (SQLException e) {
