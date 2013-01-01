@@ -7,6 +7,6 @@ public class product
 	private int quantityInInventory;
 	private int quantityAlert;
 	private supplier sup;
-	
+	database db = database.callDB();
 	
 }

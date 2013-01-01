@@ -24,6 +24,7 @@ public class loginGUI extends JDialog
   private final JPanel contentPanel= new JPanel();
   private JPasswordField passwordField;
   private JTextField textFieldUsername;
+  database db = database.callDB();	
   
 
 	public loginGUI(mainWindows m)
@@ -87,29 +88,24 @@ public class loginGUI extends JDialog
 				getRootPane().setDefaultButton(okButton);
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e)
-					{
+					{						
 						String getUsername = textFieldUsername.getText();
 						char[] getPassword = passwordField.getPassword();
+						
+						/* char[] getPassword to String getPassword */
 						String res = "";
 						for(int i = 0; i < getPassword.length; i++)
 						{
 							res = res + getPassword[i];
-//							System.out.println(res);
 						}
+						
 						if(isValidInput(getUsername, getPassword) == true)
 						{
-							database db = new database();
-							/*if(db.isManagerExist(getUsername) == true)
+							if(db.isUserInSystem(getUsername, res) == true) ////////////////////////////////
 							{
 								JOptionPane.showMessageDialog(null, "Username already exist !", "Username already exist", JOptionPane.WARNING_MESSAGE);
-							}*/
-							if(db.isUserInSystem(getUsername,res) == true)
-								dispose();
-							else
-								JOptionPane.showMessageDialog(null, "You are not in the IMS", "Warning", JOptionPane.WARNING_MESSAGE);
-							manager man = new manager(getUsername, res, "manager");
-							//db.addManager(man);
-							 // close the jdialog	*/ 
+							}
+							dispose(); // close the jdialog	*/ 
 						}
 					}
 				});
