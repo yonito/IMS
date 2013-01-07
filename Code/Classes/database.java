@@ -35,7 +35,7 @@ public class database
 			con = DriverManager.getConnection(db);
 			st = con.createStatement();
 		}
-		catch(Exception ex){}
+		catch(Exception ex){System.out.println("erreur de connection");}
 	}
 	
 	/*Check if the user exist in IMS in the login window. True = entrance; False = close*/

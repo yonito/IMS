@@ -67,6 +67,7 @@ public class mainWindows extends JFrame
 			JButton btnReservation = new JButton("RESERVATION");
 			btnReservation.setFont(new Font("Data", Font.PLAIN, 18));
 			btnReservation.setBounds(330, 226, 215, 103);
+			btnReservation.setToolTipText("Send a new reservation.");
 			contentPane.add(btnReservation);
 			btnReservation.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e)
@@ -85,6 +86,7 @@ public class mainWindows extends JFrame
 			JButton btnInventory = new JButton("INVENTORY");
 			btnInventory.setFont(new Font("Data", Font.PLAIN, 18));
 			btnInventory.setBounds(41, 388, 504, 103);
+			btnInventory.setToolTipText("Get the detail of the inventory.");
 			contentPane.add(btnInventory);
 			btnInventory.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e)
