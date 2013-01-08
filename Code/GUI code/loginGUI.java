@@ -93,19 +93,26 @@ public class loginGUI extends JDialog
 						char[] getPassword = passwordField.getPassword();
 						
 						/* char[] getPassword to String getPassword */
-						String res = "";
+						String sCode = "";
 						for(int i = 0; i < getPassword.length; i++)
 						{
-							res = res + getPassword[i];
+							sCode = sCode + getPassword[i];
 						}
 						
 						if(isValidInput(getUsername, getPassword) == true)
 						{
-							if(db.isUserInSystem(getUsername, res) == true) ////////////////////////////////
+							if(db.isUserInSystem(getUsername, sCode) == false) ////////////////////////////////
 							{
-								JOptionPane.showMessageDialog(null, "Username already exist !", "Username already exist", JOptionPane.WARNING_MESSAGE);
+								JOptionPane.showMessageDialog(null, "Error", "Not user of IMS", JOptionPane.WARNING_MESSAGE);
+								/*user u1 = new manager(getUsername, sCode, "manager");
+								user u2 = new manager("aaaa", "aaaaa", "manager");
+								//u1.addToDB();
+								//System.out.println("user is added \n");
+								u2.removeFromDB();
+								System.out.println("user is removed \n");*/
 							}
-							dispose(); // close the jdialog	*/ 
+							else
+								dispose(); // close the jdialog	*/ 
 						}
 					}
 				});

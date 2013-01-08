@@ -56,7 +56,7 @@ public class presentationWindows extends JDialog
 						updateBar(percent);
 					}
 				});
-				Thread.sleep(60);
+				Thread.sleep(10);
 			} catch(InterruptedException e){}
 		}
 		//toFront();

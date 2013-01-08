@@ -1,6 +1,6 @@
 import java.sql.SQLException;
 
-
+//addToDB doesn't work
 public abstract class user
 {
 	protected String username;
@@ -8,9 +8,10 @@ public abstract class user
 	protected String role; // worker or manager
 	database db = database.callDB();
 	
-	public int addToDB(user u)
+	public int addToDB()
 	{
-		String insert = "INSERT INTO LOGIN(Username,Password, Role) VALUES ('" + u.username + "','" + u.code + "','" + u.role + "')";
+		String insert = "INSERT INTO Login (Username,Password, Role) VALUES ('" + username + "','" + code + "','" + role + "')";
+		System.out.println(insert);
 		try {
 			(db.st).executeUpdate(insert);
 		} catch (SQLException e) {
@@ -20,9 +21,9 @@ public abstract class user
 		}
 		return 0;
 	}
-	public boolean isUserExist(user u)
+	public boolean isUserExist()
 	{
-		String sql = "select Username,Password from Login where Username='"+u.username+"'";
+		String sql = "select Username from Login where Username='"+username+"'";
 		try {
 			db.rs = db.st.executeQuery(sql);
 		} catch (SQLException e) {
@@ -46,11 +47,11 @@ public abstract class user
 		catch(Exception ex){return false;}
 	}
 	
-	public boolean removeFromDB(user u)
+	public boolean removeFromDB()
 	{
-		String request = "delete Username, Password, Role where Username ='"+u.username+"'"; //// complete the request
+		String request = "DELETE FROM Login WHERE Username ='"+username+"'";
 		try {
-			db.rs = db.st.executeQuery(request);
+			db.st.executeUpdate(request);
 		} catch (SQLException e)
 		{
 			e.printStackTrace();

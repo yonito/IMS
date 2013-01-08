@@ -29,13 +29,18 @@ public class database
 		try
 		{
 			String driver = "sun.jdbc.odbc.JdbcOdbcDriver";
-			Class.forName(driver);
+			try {
+				Class.forName(driver);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
-			String db = "jdbc:odbc:Login_DSN";
+			String db = "jdbc:odbc:IMS";
 			con = DriverManager.getConnection(db);
 			st = con.createStatement();
 		}
-		catch(Exception ex){System.out.println("erreur de connection");}
+		catch(SQLException ex){System.out.println("error");}
 	}
 	
 	/*Check if the user exist in IMS in the login window. True = entrance; False = close*/
