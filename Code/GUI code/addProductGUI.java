@@ -24,6 +24,8 @@ public class addProductGUI extends JDialog {
 	private JTextField txtNameProd;
 	private JTextField txtPrice;
 	private JTextField txtQuantity;
+	private JTextField txtFieldResQuantity;
+	private database db = database.callDB();
 	
 	public addProductGUI()
 	{
@@ -75,18 +77,18 @@ public class addProductGUI extends JDialog {
 		lblNamesSupplier.setBounds(10, 218, 179, 14);
 		contentPanel.add(lblNamesSupplier);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox<String> comboBox = new JComboBox<String>(db.getSupplierList());
 		comboBox.setBounds(10, 235, 179, 20);
 		contentPanel.add(comboBox);
 		
 		JLabel lblQuantityBefore = new JLabel("Quantity before first warning alert :");
 		lblQuantityBefore.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblQuantityBefore.setBounds(10, 274, 243, 14);
+		lblQuantityBefore.setBounds(10, 298, 243, 14);
 		contentPanel.add(lblQuantityBefore);
 		
 		txtQuantity = new JTextField();
 		txtQuantity.setColumns(10);
-		txtQuantity.setBounds(251, 272, 58, 20);
+		txtQuantity.setBounds(251, 296, 58, 20);
 		contentPanel.add(txtQuantity);
 		{
 			JPanel buttonPane = new JPanel();
@@ -104,6 +106,7 @@ public class addProductGUI extends JDialog {
 						int idProduct = Integer.parseInt(txtIDprod.getText());
 						String nameProd = txtNameProd.getText();
 						int priceProd = Integer.parseInt(txtPrice.getText());
+						int reservQuantity = Integer.parseInt(txtFieldResQuantity.getText());
 						int alertQuantity = Integer.parseInt(txtQuantity.getText());
 						//product p = new product(idProduct, nameProd, priceProd, alertQuantity);
 						//addProduct(p);
@@ -118,6 +121,16 @@ public class addProductGUI extends JDialog {
 				JButton btnAddSupplier = new JButton("Add supplier");
 				btnAddSupplier.setBounds(199, 234, 110, 23);
 				contentPanel.add(btnAddSupplier);
+				
+				JLabel lblQuantityInThe = new JLabel("Quantity in the reservation :");
+				lblQuantityInThe.setFont(new Font("Tahoma", Font.BOLD, 13));
+				lblQuantityInThe.setBounds(10, 269, 243, 14);
+				contentPanel.add(lblQuantityInThe);
+				
+				txtFieldResQuantity = new JTextField();
+				txtFieldResQuantity.setColumns(10);
+				txtFieldResQuantity.setBounds(251, 267, 58, 20);
+				contentPanel.add(txtFieldResQuantity);
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0)
 					{

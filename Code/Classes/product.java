@@ -21,15 +21,14 @@ public class product
 		sup = s;
 	}
 	
-	/*public int addProduct(product p)
+	public int addProduct()
 	{
-		String sql = "select Username,Password from Login where Username='"+username+"'and Password='"+pass+"'";
+		String insert = "INSERT INTO Product(id, Name, Price, Supplier, Reservation_Quantity, Current_Quantity, Alert_Quantity)" +
+						"VALUES ('" + id + "','" + name + "','" + price + "','" + sup + "','" + quantityReservation + "','" +
+						quantityReservation + "','" + quantityAlert + "')";
 		try {
-			db.rs = db.st.executeQuery(sql);
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
+			(db.st).executeUpdate(insert);
+		} catch (SQLException e) {System.out.println(e.getErrorCode() + '\n' + e.getMessage());}
+		return 0;
 	}
-	*/
 }

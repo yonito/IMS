@@ -1,3 +1,5 @@
+import java.sql.SQLException;
+
 
 public class supplier
 {
@@ -10,6 +12,5 @@ public class supplier
 		name = n;
 		emailAdr = adr;
 	}
-	
-	
+
 }

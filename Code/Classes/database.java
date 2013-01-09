@@ -70,4 +70,33 @@ public class database
 		catch(Exception ex){return false;}
 		
 	}
+	
+	public String[] getSupplierList()
+	{
+		int numOfLine = 0;
+		String request = "select name from Supplier";
+		try {
+			rs = st.executeQuery(request);
+		}
+		catch (SQLException e){System.out.println("error in request");}
+		try {
+			while(rs.next())
+				numOfLine++;
+		} catch (SQLException e) {}
+		String[] listSupplier = new String[numOfLine+1];
+		listSupplier[0] = "Choose a supplier";
+		int i = 1;
+		try
+		{
+			rs = st.executeQuery(request);
+			while(rs.next())
+			{
+				listSupplier[i] = rs.getString("Name");
+				System.out.println(listSupplier[i]);
+				i++;
+			}
+		}catch(SQLException e){};
+		return listSupplier;
+		
+	}
 }

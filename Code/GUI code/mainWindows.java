@@ -18,6 +18,8 @@ public class mainWindows extends JFrame
 		public static void main(String[] args)
 		{
 			presentationWindows pres = new presentationWindows();
+			//inventory  i = new inventory();
+			//i.getInventory();
 			loginThread login_thread;
 			
 			//
