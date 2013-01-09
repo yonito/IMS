@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.ComboBoxModel;
+
 /*Design pattern : SingleTon*/
 public class database
 {
@@ -71,10 +73,10 @@ public class database
 		
 	}
 	
-	public String[] getSupplierList()
+	public supplier[] getSupplierList()
 	{
 		int numOfLine = 0;
-		String request = "select name from Supplier";
+		String request = "select name, email_address from Supplier";
 		try {
 			rs = st.executeQuery(request);
 		}
@@ -83,20 +85,33 @@ public class database
 			while(rs.next())
 				numOfLine++;
 		} catch (SQLException e) {}
-		String[] listSupplier = new String[numOfLine+1];
-		listSupplier[0] = "Choose a supplier";
+		supplier[] listSupplier = new supplier[numOfLine+1];
+		listSupplier[0] = null;
 		int i = 1;
 		try
 		{
 			rs = st.executeQuery(request);
 			while(rs.next())
 			{
-				listSupplier[i] = rs.getString("Name");
-				System.out.println(listSupplier[i]);
+				listSupplier[i] = new supplier(rs.getString("Name"), rs.getString("email_address"));
+				//System.out.println(listSupplier[i]);
 				i++;
 			}
 		}catch(SQLException e){};
 		return listSupplier;
-		
+	}
+	
+	public String emailOfSupplier(String nameSupplier)
+	{
+		String email = "";
+		String request = "select email_address from Supplier where name='" + nameSupplier + "'";
+		try {
+			rs = st.executeQuery(request);
+			while(rs.next())
+				email = rs.getString("email_address");
+			System.out.println(email);
+		}
+		catch (SQLException e){System.out.println("error in request : " + e.getMessage());}
+		return email;
 	}
 }

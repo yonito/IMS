@@ -6,7 +6,7 @@ public abstract class user
 	protected String username;
 	protected String code;
 	protected String role; // worker or manager
-	database db = database.callDB();
+	static database db = database.callDB();
 	
 	public int addToDB()
 	{

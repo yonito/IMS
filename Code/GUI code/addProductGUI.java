@@ -20,6 +20,7 @@ import javax.swing.JComboBox;
 public class addProductGUI extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	public static addProductGUI thisFrame;
 	private JTextField txtIDprod;
 	private JTextField txtNameProd;
 	private JTextField txtPrice;
@@ -47,20 +48,19 @@ public class addProductGUI extends JDialog {
 		lblIDproduct.setBounds(10, 66, 179, 14);
 		contentPanel.add(lblIDproduct);
 		
-		txtIDprod = new JTextField();
-		txtIDprod.setBounds(10, 85, 179, 20);
-		contentPanel.add(txtIDprod);
-		txtIDprod.setColumns(10);
+		JLabel lblIDprod = new JLabel(""+product.counterID);
+		lblIDprod.setBounds(10, 85, 179, 20);
+		contentPanel.add(lblIDprod);
 		
 		JLabel lblNamesProduct = new JLabel("Name's product :");
 		lblNamesProduct.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNamesProduct.setBounds(10, 116, 179, 14);
 		contentPanel.add(lblNamesProduct);
 		
-		txtIDprod = new JTextField();
-		txtIDprod.setColumns(10);
-		txtIDprod.setBounds(10, 135, 179, 20);
-		contentPanel.add(txtIDprod);
+		txtNameProd = new JTextField();
+		txtNameProd.setColumns(10);
+		txtNameProd.setBounds(10, 135, 179, 20);
+		contentPanel.add(txtNameProd);
 		
 		JLabel lblPricesProduct = new JLabel("Price's product :");
 		lblPricesProduct.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -77,9 +77,20 @@ public class addProductGUI extends JDialog {
 		lblNamesSupplier.setBounds(10, 218, 179, 14);
 		contentPanel.add(lblNamesSupplier);
 		
-		JComboBox<String> comboBox = new JComboBox<String>(db.getSupplierList());
-		comboBox.setBounds(10, 235, 179, 20);
-		contentPanel.add(comboBox);
+		
+		supplier[] s = db.getSupplierList();
+		int lengthListSupllier = s.length;
+		String[] nameSupplierList = new String[lengthListSupllier];
+		for(int i = 0; i < lengthListSupllier; i++)
+		{
+			if(i == 0)
+				nameSupplierList[i] = " ";
+			else
+				nameSupplierList[i] = s[i].name;
+		}
+		final JComboBox<String> comboBoxSupplier = new JComboBox<String> (nameSupplierList);
+		comboBoxSupplier.setBounds(10, 235, 179, 20);
+		contentPanel.add(comboBoxSupplier);
 		
 		JLabel lblQuantityBefore = new JLabel("Quantity before first warning alert :");
 		lblQuantityBefore.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -101,15 +112,33 @@ public class addProductGUI extends JDialog {
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 				okButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0)
+					public void actionPerformed(ActionEvent e)
 					{
-						int idProduct = Integer.parseInt(txtIDprod.getText());
-						String nameProd = txtNameProd.getText();
-						int priceProd = Integer.parseInt(txtPrice.getText());
-						int reservQuantity = Integer.parseInt(txtFieldResQuantity.getText());
-						int alertQuantity = Integer.parseInt(txtQuantity.getText());
-						//product p = new product(idProduct, nameProd, priceProd, alertQuantity);
-						//addProduct(p);
+						String nameProd = "";
+						int priceProd = -1, reservQuantity = -1, alertQuantity = -1;
+						if(isValidInputName(txtNameProd.getText()) == true)
+							nameProd = txtNameProd.getText();
+						if(isNumber(txtPrice.getText()) == true)
+							priceProd = Integer.parseInt(txtPrice.getText());
+						if(isNumber(txtFieldResQuantity.getText()) == true)
+							reservQuantity = Integer.parseInt(txtFieldResQuantity.getText());
+						if(isNumber(txtQuantity.getText()) == true)
+							alertQuantity = Integer.parseInt(txtQuantity.getText());
+						if(priceProd == -1 || reservQuantity == -1 || alertQuantity == -1 || nameProd == "")
+							JOptionPane.showInternalMessageDialog(addProductGUI.getAddProductGUI(), "Error in information's format", "Error", JOptionPane.ERROR_MESSAGE);
+						else // the input is valid
+						{
+							Object selectedSupplierName = comboBoxSupplier.getSelectedItem();
+							String mailOfSelectedSupplier = db.emailOfSupplier((String)selectedSupplierName);
+							supplier sup = new supplier((String) selectedSupplierName, mailOfSelectedSupplier);
+							product newProd = new product(nameProd, priceProd, reservQuantity, reservQuantity, alertQuantity, sup);
+							int res = newProd.addProduct();
+							if(res != 0)
+								JOptionPane.showInternalMessageDialog(addProductGUI.getAddProductGUI(), "The product wasn't added", "Error", JOptionPane.ERROR_MESSAGE);
+							else
+								JOptionPane.showInternalMessageDialog(addProductGUI.getAddProductGUI(), "The product was added !", "Successful", JOptionPane.INFORMATION_MESSAGE);
+							dispose();
+						}
 					}
 				});
 			}
@@ -167,6 +196,13 @@ public class addProductGUI extends JDialog {
 			return false;
 		}
 		return true;
+	}
+	
+	public static addProductGUI getAddProductGUI()
+	{
+		if(thisFrame == null)
+			return new addProductGUI();
+		return thisFrame;
 	}
 }
 

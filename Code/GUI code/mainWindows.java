@@ -57,7 +57,7 @@ public class mainWindows extends JFrame
 				{
 					new Thread(new Runnable() {
 						public void run() {
-							addProductGUI addProdWin = new addProductGUI();
+							addProductGUI addProdWin = addProductGUI.getAddProductGUI();
 							addProdWin.setVisible(true);
 							addProdWin.setAlwaysOnTop(true); // tjrs au dessus des autres fenetres
 						} // end of run()	 
