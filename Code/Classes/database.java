@@ -25,7 +25,7 @@ public class database
 		else
 			return db;
 	}
-	
+
 	public void connect()
 	{
 		try
@@ -37,14 +37,14 @@ public class database
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			String db = "jdbc:odbc:IMS";
 			con = DriverManager.getConnection(db);
 			st = con.createStatement();
 		}
 		catch(SQLException ex){System.out.println("error");}
 	}
-	
+
 	/*Check if the user exist in IMS in the login window. True = entrance; False = close*/
 	public boolean isUserInSystem(String username,String pass)
 	{
@@ -52,7 +52,7 @@ public class database
 		try {
 			rs = st.executeQuery(sql);
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
 
@@ -70,9 +70,9 @@ public class database
 				return false;
 		}
 		catch(Exception ex){return false;}
-		
+
 	}
-	
+
 	public supplier[] getSupplierList()
 	{
 		int numOfLine = 0;
@@ -100,7 +100,7 @@ public class database
 		}catch(SQLException e){};
 		return listSupplier;
 	}
-	
+
 	public String emailOfSupplier(String nameSupplier)
 	{
 		String email = "";
@@ -114,4 +114,33 @@ public class database
 		catch (SQLException e){System.out.println("error in request : " + e.getMessage());}
 		return email;
 	}
+
+	//////////////
+	public boolean delete(int id)
+	{
+		String sql = "DELETE from Product where id='"+id+"'";
+		try {
+			rs = st.executeQuery(sql);
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+		try
+		{
+			int count = 0 ;
+			while(rs.next())
+				count++;
+
+			if(count > 0)
+			{
+				return true;
+			}
+			else
+				return false;
+		}
+		catch(Exception ex){return false;}
+
+	}
+
 }

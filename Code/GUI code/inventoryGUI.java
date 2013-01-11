@@ -1,19 +1,22 @@
-	import javax.swing.JDialog;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
-	import javax.swing.JPanel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-	import javax.swing.border.EmptyBorder;
-	import javax.swing.JLabel;
-	import javax.swing.JTextField;
-	import java.awt.Font;
-	import javax.swing.JButton;
-	import java.awt.Color;
-	import javax.swing.JTable;
-	import javax.swing.table.DefaultTableModel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import java.awt.FlowLayout;
+import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.Color;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-	import javax.swing.border.TitledBorder;
-	import javax.swing.ListSelectionModel;
-	import java.awt.event.ActionListener;
+import javax.swing.border.TitledBorder;
+import javax.swing.ListSelectionModel;
+import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class inventoryGUI extends JDialog
@@ -24,7 +27,7 @@ public class inventoryGUI extends JDialog
 	private database db = database.callDB();
 	private inventory stock = new inventory();
 	String[] columnNames = {"ID", "Product name", "Product price", "Quantity", "Supplier"};
-		
+
 	public inventoryGUI()
 	{
 		setTitle("Your inventory");
@@ -34,7 +37,7 @@ public class inventoryGUI extends JDialog
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JButton btnNewButton = new JButton("Reservation");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -42,15 +45,15 @@ public class inventoryGUI extends JDialog
 		});
 		btnNewButton.setBounds(61, 392, 111, 23);
 		contentPane.add(btnNewButton);
-			
+
 		JButton btnCancel = new JButton("Modify");
 		btnCancel.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-		}
+			public void actionPerformed(ActionEvent arg0) {
+			}
 		});
 		btnCancel.setBounds(61, 350, 111, 23);
 		contentPane.add(btnCancel);
-			
+
 		txtSearchAProduct = new JTextField();
 		txtSearchAProduct.setFont(new Font("Tahoma", Font.ITALIC, 11));
 		txtSearchAProduct.setForeground(new Color(128, 128, 128));
@@ -58,11 +61,11 @@ public class inventoryGUI extends JDialog
 		txtSearchAProduct.setBounds(28, 40, 246, 20);
 		contentPane.add(txtSearchAProduct);
 		txtSearchAProduct.setColumns(10);
-			
+
 		JButton btnSearch = new JButton("Search");
 		btnSearch.setBounds(284, 39, 100, 23);
 		contentPane.add(btnSearch);
-		btnSearch.addActionListener(new ActionListener() {
+		/*btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{	
 				String productNameSearched = txtSearchAProduct.getText();
@@ -71,33 +74,61 @@ public class inventoryGUI extends JDialog
 				//System.out.println("l : "  + data[0].length);
 				//System.out.println(data[0][3]);
 				//System.out.println(data[0][4]);
-				
+
 				//System.out.println(data.toString());
 				myTableModel researchModel = new myTableModel(columnNames, data);
 				table.setModel(researchModel);
 			}
-		});
-		
-			
-		JButton btnDelete = new JButton("Delete");
-		btnDelete.setBounds(227, 392, 111, 23);
-		contentPane.add(btnDelete);
-			
-		JButton btnDetail = new JButton("Detail");
-		btnDetail.setBounds(227, 350, 111, 23);
-		contentPane.add(btnDetail);
-		
-		
-		
-		String[][] data = stock.getInventory();
+		});*/
 
-		table = new JTable(new myTableModel(columnNames, data));
-		table.setAutoCreateRowSorter(true); // sort the columns
-		JScrollPane scroll = new JScrollPane(table);
-		scroll.setLocation(10, 71);
-        scroll.setSize(390,268);
-		table.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		table.setBounds(12, 71, 388, 251);
-		contentPane.add(scroll);
+		//////////////////////////////////////////////////////////////////////////////////////////////////////
+		{
+			JPanel buttonPane = new JPanel();
+			buttonPane.setBounds(0, 331, 433, 33);
+			contentPane.add(buttonPane);
+			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			{
+				/*JButton deleteButton = new JButton("Delete");
+				deleteButton.setActionCommand("Delete");
+				buttonPane.add(deleteButton);
+				getRootPane().setDefaultButton(deleteButton);*/
+				
+				JButton deleteButton = new JButton("Delete");
+				deleteButton.setBounds(227, 392, 111, 23);
+				contentPane.add(deleteButton);
+
+				
+				deleteButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e)
+					{
+						db.delete(4);
+					}
+
+				});
+
+				////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+				
+				JButton btnDetail = new JButton("Detail");
+				btnDetail.setBounds(227, 350, 111, 23);
+				contentPane.add(btnDetail);
+
+
+
+				String[][] data = stock.getInventory();
+
+				table = new JTable(new myTableModel(columnNames, data));
+				table.setAutoCreateRowSorter(true); // sort the columns
+				JScrollPane scroll = new JScrollPane(table);
+				scroll.setLocation(10, 71);
+				scroll.setSize(390,268);
+				table.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				table.setBounds(12, 71, 388, 251);
+				contentPane.add(scroll);
+			}
+		}
 	}
 }
