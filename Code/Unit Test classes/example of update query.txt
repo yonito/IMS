@@ -1,0 +1,1 @@
+String  update = update Product set nameOfProduct = 'bags' where pIdNumber = 1;
