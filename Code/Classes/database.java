@@ -21,7 +21,7 @@ public class database
 	public static database callDB()
 	{
 		if(db == null)
-			return new database();
+			return db = new database();
 		else
 			return db;
 	}
