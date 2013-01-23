@@ -3,7 +3,7 @@ import java.sql.SQLException;
 
 public class supplier
 {
-	public String name;
+	private String name;
 	private String emailAdr;
 	database db = database.callDB();
 	
@@ -27,6 +27,9 @@ public class supplier
 		this.emailAdr = emailAdr;
 	}
 	
+	public String getName() {
+		return Neme;
+	}
 	
 
 }
